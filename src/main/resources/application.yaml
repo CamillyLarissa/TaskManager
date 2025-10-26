@@ -1,0 +1,43 @@
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  config:
+    import: optional:file:.env[.properties]
+
+  application:
+    name: api
+
+  datasource:
+      url: ${POSTGRES_URL}
+      driver-class-name: org.postgresql.Driver
+      username: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+
+      hikari:
+        maximum-pool-size: 10
+        minimum-idle: 2
+        idle-timeout: 600000
+        max-lifetime: 1800000
+        keepalive-time: 120000
+        connection-timeout: 30000
+
+  transaction:
+    default-timeout: -1
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      jakarta:
+        persistence:
+          query:
+            timeout:
+
+#springdoc:
+#  swagger-ui:
+#    url: /julia-explica.yml
+
+#security:
+#  jwt:
+#    secret-key: ${JWT_SECRET_KEY}
+#    expiration-time: ${JWT_EXPIRES_IN}
+

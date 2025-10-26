@@ -1,0 +1,43 @@
+services:
+  app:
+    container_name: spring-task-manager
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: spring-task-manager:latest
+    restart: always
+    ports:
+      - "8075:8080"
+
+  db:
+    image: postgres:13
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql
+    networks:
+      - postgres-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - 15433:80
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - postgres-network
+    volumes:
+        - ${PWD}/pgadmin-data/:/var/lib/pgadmin/
+
+networks:
+  webnet:
+  postgres-network:
+
+volumes:
+  db_data:
+    driver: local

@@ -8,6 +8,11 @@ on:
 
 jobs:
   build:
+    env:
+      POSTGRES_URL: ${{ vars.POSTGRES_URL }}
+      POSTGRES_DB: ${{ vars.POSTGRES_DB }}
+      POSTGRES_USER: ${{ vars.POSTGRES_USER }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }} 
     runs-on: ubuntu-latest
 
     steps:

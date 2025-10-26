@@ -1,6 +1,4 @@
 spring:
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
   config:
     import: optional:file:.env[.properties]
 
@@ -9,7 +7,6 @@ spring:
 
   datasource:
       url: ${POSTGRES_URL}
-      driver-class-name: org.postgresql.Driver
       username: ${POSTGRES_USER}
       password: ${POSTGRES_PASSWORD}
 

@@ -33,6 +33,13 @@ spring:
 #  swagger-ui:
 #    url: /julia-explica.yml
 
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+
+
 #security:
 #  jwt:
 #    secret-key: ${JWT_SECRET_KEY}
